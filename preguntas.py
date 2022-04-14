@@ -13,16 +13,21 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 """
 
 
+
 def pregunta_01():
     """
     Retorne la suma de la segunda columna.
 
-    Rta/
+    Rta/p
     214
-
-    """
-    return
-
+     """
+    data = open('data.csv','r').readlines()
+    col2 = [int(row[2]) for row in data]
+    suma = sum(col2)
+    print(suma)
+    return suma  
+    
+pregunta_01()
 
 def pregunta_02():
     """
@@ -39,8 +44,28 @@ def pregunta_02():
     ]
 
     """
-    return
+    data = open('data.csv','r').readlines()
+    col0 = [(row[0]) for row in data]
+    list_l=[]
+    for element in col0:
+        if element not in list_l:
+         list_l.append(element)
+        else:
+         continue
+    
+    list_l.sort()
 
+    list_count=[]
+    for element in list_l:
+        list_count.append(col0.count(element))
+    
+    list_count
+    List=list(zip(list_l,list_count))
+    print ( List)
+
+    return List
+
+pregunta_02()
 
 def pregunta_03():
     """
@@ -57,8 +82,35 @@ def pregunta_03():
     ]
 
     """
-    return
 
+    data = open('data.csv','r').readlines()
+    col0 = [(row[0]) for row in data]
+    list_l=[]
+    for element in col0:
+        if element not in list_l:
+         list_l.append(element)
+        else:
+         continue
+    list_l.sort()
+    suma=[]
+    e=[]
+    c=0
+    for element in list_l:
+       for i in data:
+          if i[0] == list_l[c]:
+             e.append(int(i[2]))
+
+          else:
+              continue   
+       suma.append(sum(e))      
+       c+=1
+       e=[]
+    List=list(zip(list_l,suma))  
+    print(List)
+
+    return List
+
+pregunta_03()
 
 def pregunta_04():
     """
@@ -81,15 +133,26 @@ def pregunta_04():
         ("12", 3),
     ]
 
-    """
-    return
 
+
+    """
+    data = open('data.csv','r').readlines()
+    data=[f.replace('\n','') for f in data]
+    data=[f.split('\t') for f in data]
+    col3=[i[2].split('-') for i in data]
+    list_months=[i[1]for i in col3]
+    months=sorted(set([i for i in list_months]))
+    tuple_date_counts=[(x,list_months.count(x)) for x in months] 
+    print(tuple_date_counts)
+    return tuple_date_counts
+    
+pregunta_04()
 
 def pregunta_05():
     """
     Retorne una lista de tuplas con el valor maximo y minimo de la columna 2 por cada
     letra de la columa 1.
-
+    
     Rta/
     [
         ("A", 9, 2),
@@ -100,8 +163,35 @@ def pregunta_05():
     ]
 
     """
-    return
+    data = open('data.csv','r').readlines()
+    col0 = [(row[0]) for row in data]
+    list_l=[]
+    for element in col0:
+        if element not in list_l:
+         list_l.append(element)
+        else:
+         continue
+    list_l.sort()
+    minimo=[]
+    maximo=[]
+    e=[]
+    c=0
+    for element in list_l:
+       for i in data:
+          if i[0] == list_l[c]:
+             e.append(int(i[2]))
 
+          else:
+              continue   
+       minimo.append(min(e))  
+       maximo.append(max(e))    
+       c+=1
+       e=[]
+    List=list(zip(list_l,maximo,minimo))  
+    print(List)
+
+    return List
+pregunta_05()
 
 def pregunta_06():
     """
@@ -125,8 +215,26 @@ def pregunta_06():
     ]
 
     """
-    return
 
+    with open('data.csv','r') as file:
+       data=file.readlines()
+    data=[row.replace("\n","") for row in data]
+    data=[row.split("\t") for row in data]
+    col4=[col[4].split(',') for col in data]
+    list_key_value = [ (y[:3],int(y[4:])) for x in col4 for y in x ]
+    keys=sorted(set(i[0] for i in list_key_value))
+    valores=[]
+    tuplas=[]
+    for key in keys:
+        for i in list_key_value:
+            if i[0]==key:
+                valores.append(i[1])
+        tuplas.append((key, min(valores), max(valores)))
+        valores.clear()
+    print(tuplas)
+    return tuplas    
+
+pregunta_06()
 
 def pregunta_07():
     """
@@ -149,8 +257,37 @@ def pregunta_07():
     ]
 
     """
-    return
-
+    data = open('data.csv','r').readlines()
+    col1 = [(row[2]) for row in data]
+    list_l=[]
+    list_letters=[]
+    for element in col1:
+        if element not in list_l:
+         list_l.append(element)
+        else:
+         continue
+    list_l.sort()
+    List=[]
+    
+    e=[]
+    c=0
+    for element in list_l:
+       for i in data:
+          if i[2] == list_l[c]:
+              e.append(i[0])
+              
+          else:
+              continue   
+       
+       list_letters=e
+       Listi=(c,list_letters)
+       List.append(Listi)
+       
+       e=[]
+       c+=1
+    print(List)  
+    return List
+pregunta_07()
 
 def pregunta_08():
     """
@@ -174,7 +311,39 @@ def pregunta_08():
     ]
 
     """
-    return
+    data = open('data.csv','r').readlines()
+    col1 = [(row[2]) for row in data]
+    list_l=[]
+    list_letters=[]
+    for element in col1:
+        if element not in list_l:
+         list_l.append(element)
+        else:
+         continue
+    list_l.sort()
+    List=[]
+    
+    e=[]
+    c=0
+    for element in list_l:
+       for i in data:
+          if i[2] == list_l[c]:
+              e.append(i[0])
+              
+          else:
+              continue   
+       
+       list_letters=e
+       list_letters=list(set(list_letters))
+       list_letters.sort()
+       Listi=(c,list_letters)
+       List.append(Listi)
+       
+       e=[]
+       c+=1
+    print(List)  
+    return List
+pregunta_08()
 
 
 def pregunta_09():
@@ -197,9 +366,19 @@ def pregunta_09():
     }
 
     """
-    return
+    data = open('data.csv','r').readlines()
+    data=[i.replace('\n','') for i in data]
+    data=[i.split('\t') for i in data]
+    col5=[i[4].split(',') for i in data]
 
+    list_keys=[(i[:3]) for x in col5 for i in x]
+    keys=sorted(set(i for i in list_keys))
+    tuple_key_counts=[(i,list_keys.count(i)) for i in keys]
+    dict_key_counts=dict(tuple_key_counts)
+    print(dict_key_counts)
+    return dict_key_counts
 
+pregunta_09()
 def pregunta_10():
     """
     Retorne una lista de tuplas contengan por cada tupla, la letra de la columna 1 y la
@@ -218,8 +397,17 @@ def pregunta_10():
 
 
     """
-    return
+    data = open('data.csv','r').readlines()
+    data=[i.replace('\n','') for i in data]
+    data=[i.split('\t') for i in data]
+    col4=[len(i[3].split(',')) for i in data]
+    col5=[len(i[4].split(',')) for i in data]
+    col1=[(i[0]) for i in data]
+    List_tuples=list(zip(col1,col4,col5))
+    print(List_tuples)
 
+    return List_tuples
+pregunta_10()
 
 def pregunta_11():
     """
@@ -239,7 +427,31 @@ def pregunta_11():
 
 
     """
-    return
+    data = open('data.csv','r').readlines()
+    data=[i.replace('\n','') for i in data]
+    data=[i.split('\t') for i in data]
+    col2=[int(i[1]) for i in data]
+    col4=[(i[3].split(',')) for i in data]
+    datos=list(zip(col4,col2))
+    print(datos)
+    keys=[]
+    for x in col4: 
+        keys.extend(x)
+    print(keys)
+    keys_dic=sorted(set(keys))
+    
+    dic={}
+    for key in keys_dic:
+        dic[key]=0
+    print(dic)
+
+    for x,y in datos:
+        for i in x:
+            dic[i]+=int(y)
+
+    print(dic)
+    return dic
+pregunta_11()
 
 
 def pregunta_12():
@@ -257,4 +469,24 @@ def pregunta_12():
     }
 
     """
-    return
+
+    data = open('data.csv','r').readlines()
+    data=[i.replace('\n','') for i in data]
+    data=[i.split('\t') for i in data]
+    col1=[(i[0]) for i in data]
+    col5=[(i[4].split(',')) for i in data]
+    datos=list(zip(col1,col5))
+
+    keys_dic=sorted(set(col1))
+
+    dic={}
+    for key in keys_dic:
+        dic[key]=0
+    
+    for x,y in datos:
+        for i in y:
+            dic[x]+=int(i[4:])
+
+    print(dic)
+    return dic
+pregunta_12()
