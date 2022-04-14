@@ -144,7 +144,7 @@ def pregunta_04():
     months=sorted(set([i for i in list_months]))
     tuple_date_counts=[(x,list_months.count(x)) for x in months] 
     print(tuple_date_counts)
-    return
+    return tuple_date_counts
     
 pregunta_04()
 
@@ -190,7 +190,7 @@ def pregunta_05():
     List=list(zip(list_l,maximo,minimo))  
     print(List)
 
-    return
+    return List
 pregunta_05()
 
 def pregunta_06():
